@@ -5,7 +5,8 @@ module.exports = {
   entry: path.join(__dirname, "src", "client", "index.js"),
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: 'bundle.js'
+    filename: 'bundle.js', 
+    // publicPath: '/'
   },
   mode: "development",
   devServer: {
