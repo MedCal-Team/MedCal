@@ -10,7 +10,7 @@ const App = () => {
           <h1>Welcome to MedCal!</h1>
         </main>
       } />
-      {/* <Route path="/homepage" element={<Homepage />} /> */}
+      {/* <Route path="/home" element={<Home />} /> */}
     </Routes>
   )
 }
