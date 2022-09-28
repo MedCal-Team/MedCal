@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Prescription from './Prescription';
 
 const PrescriptionContainer = () => {
 
-  // returns the current username and medList for that user
-  const username = useSelector((state) => state.username);
-  // Note: need to update the store with medList upon log in
-  // TODO: modify actions and reducers to put fetch request in log in!
+  // Note: if the store is updated upon login, this will work!
+  // TODO: modify actions and reducers to put fetch request upon log in!
+  // the login action should trigger a change in the medList with data from the server
   const medList = useSelector((state) => state.medList);
 
   const medCards = medList.map((med, index) => {
