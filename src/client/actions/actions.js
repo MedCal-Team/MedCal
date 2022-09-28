@@ -67,6 +67,7 @@ const deleteMed = (medName) => ({
   payload: medName
 });
 
+// description, frequency, taketime, startdate, quantity, title
 actions.createMedThunk = (
   title,
   medName,
@@ -78,18 +79,17 @@ actions.createMedThunk = (
   updateCalendar,
   username
 ) => dispatch => {
-  fetch('insert routing here', {
+  fetch('/api/homepage', {
     method: 'POST',
     body: JSON.stringify({
-      username: username,
-      prescription: medName,
+      // username: username,
       description: medDesc,
       frequency: frequency,
-      take_time: administrationTime,
-      start_date: start,
+      taketime: administrationTime,
+      startdate: start,
       quantity: doses,
-      title: title, 
-      add: updateCalendar
+      title: medName, 
+      // add: updateCalendar
     }),
     headers: {'Content-Type': 'application/json'},
   })
@@ -114,18 +114,17 @@ actions.updateMedThunk = (
   updateCalendar,
   username
 ) => dispatch => {
-  fetch('insert routing here', {
-    method: 'POST',
+  fetch('/api/homepage', {
+    method: 'PATCH',
     body: JSON.stringify({
-      username: username,
-      prescription: medName,
+      // username: username,
       description: medDesc,
       frequency: frequency,
-      take_time: administrationTime,
-      start_date: start,
+      taketime: administrationTime,
+      startdate: start,
       quantity: doses,
-      title: title, 
-      add: updateCalendar
+      title: medName, 
+      // add: updateCalendar
     }),
     headers: {'Content-Type': 'application/json'},
   })
@@ -143,11 +142,11 @@ actions.deleteMedThunk = (
   medName,
   username
 ) => dispatch => {
-  fetch('insert routing here', {
-    method: 'POST',
+  fetch('/api/homepage', {
+    method: 'DELETE',
     body: JSON.stringify({
-      username: username,
-      prescription: medName,
+      // username: username,
+      title: medName,
     }),
     headers: {'Content-Type': 'application/json'},
   })
