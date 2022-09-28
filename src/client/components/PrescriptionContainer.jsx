@@ -31,7 +31,7 @@ const PrescriptionContainer = () => {
 
   const medCards = dummyData.map((med, index) => {
     return (
-      <Grid xs={2} sm={4} md={4} key={index}>
+      <Grid sm={12} lg={6} key={index}>
         <Prescription
           med={med}
           key={'med' + (index + 1)}
@@ -42,7 +42,7 @@ const PrescriptionContainer = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Grid container spacing={4} >
         {medCards}
       </Grid>
     </Box>
