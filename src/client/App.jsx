@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './stylesheets/styles.scss';
 import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import './stylesheets/styles.scss';
 
 const App = () => {
   return(
@@ -10,7 +11,7 @@ const App = () => {
           <h1>Welcome to MedCal!</h1>
         </main>
       } />
-      {/* <Route path="/home" element={<Home />} /> */}
+      <Route path="/home" element={<Home />} />
     </Routes>
   )
 }
