@@ -2,14 +2,32 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Prescription from './Prescription';
 
+const dummyData = [
+  {
+    medName: 'Medicine 1',
+    medDesc: 'A description of the medicine',
+    doses: 15
+  },
+  {
+    medName: 'Medicine 2',
+    medDesc: 'Another description of the medicine',
+    doses: 35
+  },
+  {
+    medName: 'Medicine 3',
+    medDesc: 'Yet another description of the medicine',
+    doses: 49
+  }
+]
+
 const PrescriptionContainer = () => {
 
   // Note: if the store is updated upon login, this will work!
   // TODO: modify actions and reducers to put fetch request upon log in!
   // the login action should trigger a change in the medList with data from the server
-  const medList = useSelector((state) => state.medList);
+  // const medList = useSelector((state) => state.medList);
 
-  const medCards = medList.map((med, index) => {
+  const medCards = dummyData.map((med, index) => {
     return (
       <Prescription
         med={med}
