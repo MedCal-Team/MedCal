@@ -2,48 +2,48 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   loggedIn: false,
-  userName: '',
+  username: '',
   calendarEmbedSrc: '',
   medList: []
 };
 
 const medReducer = (state = initialState, action) => {
   let loggedIn;
-  let userName;
+  let username;
   let calendarEmbedSrc;
   let medList;
   let prescription;
 
   switch(action.type) {
     case types.LOG_IN:
-      userName = action.payload.userName;
+      username = action.payload.username;
       calendarEmbedSrc = action.payload.calendarEmbedSrc;
       medList = action.payload.medList;
       loggedIn = true;
 
       return {
         loggedIn,
-        userName,
+        username,
         calendarEmbedSrc,
         medList
       };
     
     case types.SIGN_UP:
-      userName = action.payload.userName;
+      username = action.payload.username;
       calendarEmbedSrc = action.payload.calendarEmbedSrc;
       loggedIn = true;
 
       return {
         ...state,
         loggedIn,
-        userName,
+        username,
         calendarEmbedSrc
       };
     
     case types.LOG_OUT:
       return {
         loggedIn: false,
-        userName: '',
+        username: '',
         calendarEmbedSrc: '',
         medList: [],
       };
