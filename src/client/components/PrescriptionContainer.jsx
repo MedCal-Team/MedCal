@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Unstable_Grid2';
 import Prescription from './Prescription';
 
 const dummyData = [
@@ -29,20 +31,21 @@ const PrescriptionContainer = () => {
 
   const medCards = dummyData.map((med, index) => {
     return (
-      <Prescription
-        med={med}
-        key={'med' + (index + 1)}
-      />
+      <Grid xs={2} sm={4} md={4} key={index}>
+        <Prescription
+          med={med}
+          key={'med' + (index + 1)}
+        />
+      </Grid>
     );
   });
 
   return (
-    <section className="medSection">
-      <h3>My Prescriptions</h3>
-      <div className="medContainer">
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {medCards}
-      </div>
-    </section>
+      </Grid>
+    </Box>
   );
 };
 

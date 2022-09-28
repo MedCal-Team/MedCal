@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, IconButton } from '@mui/material';
 import { DeleteForever } from '@mui/icons-material';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+
 import { Link } from 'react-router-dom';
 import UpdateModal from './UpdateModal';
 import actions from '../actions/actions.js';
@@ -29,21 +34,31 @@ const Prescription = (props) => {
     setIsModalOpen(true);
   }
 
+
   return (
-    <section className="medCard">
-      <ul>
-        <li>Medication: {medName}</li>
-        <li>Description: {medDesc}</li>
-        <li>Number of doses: {doses}</li>
-      </ul>
+    <Card sx={{ minWidth: 275 }}>
       <UpdateModal open={isModalOpen} onClose={() => setIsModalOpen(false)}/>
-      <div className="buttons">
-        <Button variant="contained" onClick={updateMed}>Edit</Button>
-        <IconButton variant="contained" onClick={dispatch(actions.deleteMedThunk(medName))} size="large">
-          <DeleteForever fontSize="inherit"/>
-        </IconButton>
-      </div>
-    </section>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            Med Info
+          </Typography>
+          <Typography variant="h5" component="div">
+            {medName}
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            Doses: {doses}
+          </Typography>
+          <Typography variant="body2">
+            {medDesc}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button variant="contained" onClick={updateMed}>Edit</Button>
+          <IconButton variant="contained" onClick={dispatch(actions.deleteMedThunk(medName))} size="large">
+            <DeleteForever fontSize="inherit"/>
+          </IconButton>
+        </CardActions>
+      </Card>
   );
 };
 
