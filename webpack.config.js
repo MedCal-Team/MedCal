@@ -20,11 +20,11 @@ module.exports = {
           }
         }
       },  
-      {
-        test: /\.s[ac]ss$/i,
-        exclude: /node_modules/,
-        use: ["style-loader", "css-loader"],
-      },
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   exclude: /node_modules/,
+      //   use: ["style-loader", "css-loader"],
+      // },
       {
         test: /\.s[ac]ss$/i,
         use: [
@@ -57,8 +57,16 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
+    static: {
+      publicPath: '/dist',
+      directory: path.resolve(__dirname, 'dist'),
+    },
+    compress: true,
+    hot: true,
+    port: 8080,
+    historyApiFallback: true,
     proxy: {
-      '/': 'http://localhost:3001',
+      '/api': 'http://localhost:3001',
     },
   }
 };
