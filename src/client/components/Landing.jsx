@@ -1,10 +1,11 @@
 import React from 'react';
+import Navbar from './Navbar';
 
 const Landing = () => {
 
   return(
     <main>
-      <h1>Welcome to MedCal!</h1>
+      <Navbar />
     </main>
   )
 }

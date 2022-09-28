@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Box, Modal, Typography, TextField } from '@mui/material';
 
 const style = {
@@ -51,7 +52,16 @@ const SignUpModal = ({ open, onClose }) => {
                 id='username'
                 label='username'
                 variant='standard'
-                value={username} />
+                defaultValue='medcal'
+                // onChange={(e) => (e.target.value)}
+                readonly
+                />
+                <TextField
+                id='password'
+                label='password'
+                variant='standard'
+                defaultValue='I love react/redux' 
+                />
             </Typography>
             <Button variant='contained' sx={{ my: 4, mx: 13 }} onClick={handleAddUser}>Sign Up</Button>
           </Box>

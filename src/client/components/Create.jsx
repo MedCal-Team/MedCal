@@ -4,43 +4,44 @@ import React, { useState } from 'react';
 
 const CreatePage = (props) => {
   // create a click handler to submit form to backend - account for async
-  const handleCreateMedSubmit = async (event) => {
-    // prevent reloading of page when form is submitted
-    event.preventDefault();
-    // add input from form 
-    const title = event.target[0].value;
-    const medName = event.target[1].value;
-    const medDesc = event.target[2].value;
-    const start = event.target[3].value;
-    const frequency = event.target[4].value;
-    const administrationTime = event.target[5].value;
-    const doses = event.target[6].value;
-    const updateCalendar = event.target[7].value;
+//   const handleCreateMedSubmit = async (event) => {
+//     // prevent reloading of page when form is submitted
+//     event.preventDefault();
+//     // add input from form 
+// //     const title = event.target[0].value;
+// //     const medName = event.target[1].value;
+// //     const medDesc = event.target[2].value;
+// //     const start = event.target[3].value;
+// //     const frequency = event.target[4].value;
+// //     const administrationTime = event.target[5].value;
+// //     const doses = event.target[6].value;
+// //     const updateCalendar = event.target[7].value;
     
-    // take input information and create an object to send to backend
-    const formData = { title, medName, medDesc, start, frequency, administrationTime, doses, updateCalendar };
-    console.log(formData);
+//     // take input information and create an object to send to backend
+//     const formData = { title, medName, medDesc, start, frequency, administrationTime, doses, updateCalendar };
+//     console.log(formData);
     
-    const url = ''; 
+//     const url = '/homepage'; 
     
-    const sendFormData = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData),
-    });
-    // await response and parse information into json
-    const response = await sendFormData.json();
-    // save this to props? Save this to store? 
-    // once submitted redirect back to /homepage
-  } 
+//     const sendFormData = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(formData),
+//     });
+//     // await response and parse information into json
+//     const response = await sendFormData.json();
+//     // save this to props? Save this to store? 
+//     // once submitted redirect back to /home
+//   } 
 
   return (
     <div>
       <h1>Fill out the form to add a new medication</h1>
       <div className="createFormContainer">
         <form className="medicationForm" onSubmit={handleCreateMedSubmit}>
+
           <div className="newInput">
           What is the title for your medication event?
             <label className="newInputLabel">
