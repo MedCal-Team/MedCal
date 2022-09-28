@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, IconButton, DeleteIcon } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
+import { DeleteForever } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import UpdateModal from './UpdateModal';
 import actions from '../actions/actions.js';
 
 const Prescription = (props) => {
+  // local state to store if the modal is open
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
   // deconstruct all medication information from props
@@ -21,6 +25,10 @@ const Prescription = (props) => {
     updateCalendar 
   } = props.med;
 
+  const updateMed = () => {
+    setIsModalOpen(true);
+  }
+
   return (
     <section className="medCard">
       <ul>
@@ -28,10 +36,11 @@ const Prescription = (props) => {
         <li>Description: {medDesc}</li>
         <li>Number of doses: {doses}</li>
       </ul>
+      <UpdateModal open={isModalOpen} onClose={() => setIsModalOpen(false)}/>
       <div className="buttons">
-        <Button variant="contained">Edit</Button>
-        <IconButton variant="contained" onClick={dispatch(actions.deleteMedThunk(medName))}>
-          <DeleteIcon />
+        <Button variant="contained" onClick={updateMed}>Edit</Button>
+        <IconButton variant="contained" onClick={dispatch(actions.deleteMedThunk(medName))} size="large">
+          <DeleteForever fontSize="inherit"/>
         </IconButton>
       </div>
     </section>
