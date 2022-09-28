@@ -31,15 +31,10 @@ const CreatePage = (props) => {
       body: JSON.stringify(formData),
     });
     // await response and parse information into json
+    const response = await sendFormData.json();
     // save this to props? Save this to store? 
+    // once submitted redirect back to /homepage
   } 
-
-  const handleToggleToCalendar = async (event) => {
-    // prevent default 
-    event.preventDefault()
-    // send form data information to google calendar api
-
-  }
 
   return (
     <div>
@@ -207,7 +202,7 @@ const CreatePage = (props) => {
           <div className="newInput">
           Would you like to add event to your calendar?
             <label class="switch">
-              <input type="checkbox" id="toggled" onclick={handleToggleToCalendar}>
+              <input type="checkbox" id="toggled">
               <span class="slider">
               </span>
               </input>
