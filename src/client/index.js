@@ -2,6 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 ReactDOM.render(
-    <button><a href='/signup'>Login With Google</a></button>,
+    <div>Hello World</div>,
   document.getElementById('root')
 );
