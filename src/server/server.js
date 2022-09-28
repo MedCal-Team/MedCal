@@ -12,32 +12,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // endpoint to post user and password into DB signup
-app.post('/signup', loginControllers.createUser, (req, res) => {
+app.post('/api/signup', loginControllers.createUser, (req, res) => {
   return res.status(200).send('registered!');  //redirect to login
 });
 
 // this is the endpoint for logging in
-app.post('/login', loginControllers.verifyUser, loginControllers.createToken, (req, res) => {
+app.post('/api/login', loginControllers.verifyUser, loginControllers.createToken, (req, res) => {
   return res.status(200).send('logged in!');
 });
 
 // getting all user relevant prescription event data @ homepage endpoint
-app.get('/homepage', loginControllers.verifyToken, homepageControllers.getPrescriptions, (req, res) => {
+app.get('/api/homepage', loginControllers.verifyToken, homepageControllers.getPrescriptions, (req, res) => {
   return res.status(200).json(res.locals.prescriptions);
 });
 
 // posting a prescription event form @ homepage endpoint
-app.post('/homepage', loginControllers.verifyToken, homepageControllers.createPrescription, (req, res) => {
+app.post('/api/homepage', loginControllers.verifyToken, homepageControllers.createPrescription, (req, res) => {
   return res.status(200).send(`homepage posted`);
 });
 
 // deleting a prescription event form @ homepage endpoint
-app.delete('/homepage', loginControllers.verifyToken, homepageControllers.deletePrescription, (req, res) => {
+app.delete('/api/homepage', loginControllers.verifyToken, homepageControllers.deletePrescription, (req, res) => {
   return res.status(200).send(`homepage deleted`);
 });
 
 // updating a prescription event @ homepage endpoint
-app.patch('/homepage', loginControllers.verifyToken, homepageControllers.updatePrescription, (req, res) => {
+app.patch('/api/homepage', loginControllers.verifyToken, homepageControllers.updatePrescription, (req, res) => {
   return res.status(200).send(`homepage updated`);
 });
 
