@@ -18,10 +18,6 @@ const Home = () => {
         </Grid>
       </Grid>
     </Container>
-    // <section className="home">
-    //   
-    //   <PrescriptionContainer />
-    // </section>
   );
 };
 
