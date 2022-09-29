@@ -32,7 +32,7 @@ loginControllers.createUser = (req, res, next) => {
 
 //Verify the user by checking the database
 loginControllers.verifyUser = (req, res, next) => {
-  const { username } = req.body;
+  const { username } = req.body.username;
   const sqlVerify = 'SELECT username FROM users WHERE username = $1';
   db.query(sqlVerify, [username])
     .then((result) => {

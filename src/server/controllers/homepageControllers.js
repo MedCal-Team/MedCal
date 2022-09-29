@@ -23,9 +23,9 @@ homepageControllers.getPrescriptions = (req, res, next) => {
 // create a prescription in the DB using the json object sent from the frontend, don't return anything
 homepageControllers.createPrescription = (req, res, next) => {
   const username = res.locals.username;
-  const {description, frequency, taketime, startdate, quantity, title} = req.body;
+  const {description, frequency, taketime, startdate, quantity, title, prescription} = req.body;
   console.log('entered postpresc', [username, description, frequency, taketime, startdate, quantity, title]);
-  const sqlPrescription = 'INSERT INTO pilltaker(username, description, frequency, taketime, startdate, quantity, title) VALUES($1,$2,$3,$4,$5,$6,$7)';
+  const sqlPrescription = 'INSERT INTO pilltaker(username, description, frequency, taketime, startdate, quantity, title, prescription) VALUES($1,$2,$3,$4,$5,$6,$7,$8)';
   db.query(sqlPrescription, [username, description, frequency, taketime, startdate, quantity, title])
     .then((result) => {
       return next(); 
@@ -41,20 +41,20 @@ homepageControllers.createPrescription = (req, res, next) => {
 
 // @EXAMPLE POST FORM
 // {
-//   "username": "user1",
 //   "description": "testpresc",
 //   "frequency": ["MO","WE","FR"],
 //   "taketime": "07:00:00-12:00:00",
 //   "startdate": "2022-09-28",
 //   "quantity":"270",
+//   "prescription": "expresc",
 //   "title":"testpresc"
 // }
 // update a prescription event and return nothing but a success msg
 homepageControllers.updatePrescription = (req, res, next) => {
   const username = res.locals.username;
-  const {description, frequency, taketime, startdate, quantity, title} = req.body;
-  const sqlPrescription = 'UPDATE pilltaker SET description = $2, frequency = $3, taketime = $4, startdate = $5, quantity= $6, title = $7 WHERE username = $1';
-  db.query(sqlPrescription, [username, description, frequency, taketime, startdate, quantity, title])
+  const {description, frequency, taketime, startdate, quantity, title, prescription} = req.body;
+  const sqlPrescription = 'UPDATE pilltaker SET description = $2, frequency = $3, taketime = $4, startdate = $5, quantity= $6, title = $7, prescription = $8 WHERE username = $1';
+  db.query(sqlPrescription, [username, description, frequency, taketime, startdate, quantity, title, prescription])
     .then((result) => {
       return next(); 
     })

@@ -4,7 +4,18 @@ import React, { useState } from 'react';
 
 const CreatePage = (props) => {
   // create a click handler to submit form to backend - account for async
-//   const handleCreateMedSubmit = async (event) => {
+  const handleCreateMedSubmit = (event) => {
+    event.preventDefault();
+    // console.log(event.target);
+    const medForm = {
+      title: event.target[0].value,
+      prescription: event.target[1].value,
+      description: event.target[2].value,
+      startdate: event.target[3].value
+    };
+    console.log(medForm);
+  }
+  // description, frequency, taketime, startdate, quantity, title, prescription
 //     // prevent reloading of page when form is submitted
 //     event.preventDefault();
 //     // add input from form 
@@ -39,26 +50,22 @@ const CreatePage = (props) => {
   return (
     <div>
       <h1>Fill out the form to add a new medication</h1>
-      <div className="createFormContainer">
-        <form className="medicationForm" onSubmit={handleCreateMedSubmit}>
-
-          <div className="newInput">
+      <form className="medicationForm" onSubmit={handleCreateMedSubmit} >
+        <div className="newInput">
           What is the title for your medication event?
             <label className="newInputLabel">
-              <input className="newInputBox">
-              </input>
-            </label>
-          </div>
-
-          <div className="newInput">
+              <input className="newInputBox" name="title">
+            </input>
+          </label>
+        </div>
+        <div className="newInput">
           What is the name of your medication?
-            <label className="newInputLabel">
-              <input className="newInputBox">
-              </input>
-            </label>
-          </div>
-
-          <div className="newInput">
+          <label className="newInputLabel">
+            <input className="newInputBox" >
+            </input>
+          </label>
+        </div>
+        <div className="newInput">
           Please enter your prescription information.
             <label className="newInputLabel">
               <input className="newInputBox">
@@ -66,17 +73,16 @@ const CreatePage = (props) => {
             </label>
           </div>
 
-          <div className="newInput">
+        <div className="newInput">
           When did you start taking this medication?
-            <label className="newInputLabel">
-              <input className="newInputBox" value="default">dd/mm/yyyy</input>
-            </label>
-          </div>
-
-          <div className="newInput">
+          <label className="newInputLabel">
+            <input className="newInputBox" placeholder="dd/mm/yyyy"></input>
+          </label>
+        </div>
+        <div className="newInput">
           How often do you take this medication?
-            <label className="newDropdownContainer">
-              <select className="newDropdownMenu"></select>
+          <label className="newDropdownContainer">
+            <select className="newDropdownMenu">
               <option disabled selected>Select the days</option>
               <option value="Monday">Monday</option>
               <option value="Tuesday">Tuesday</option>
@@ -85,10 +91,10 @@ const CreatePage = (props) => {
               <option value="Friday">Friday</option>
               <option value="Saturday">Saturday</option>
               <option value="Sunday">Sunday</option>
-            </label>
-          </div>
-
-          <div className="newInput">
+            </select>
+          </label>
+        </div>
+        <div className="newInput">
           What time do you take your medication?
             <label className="newDropdownContainer">
               <select className="newDropdownMenu">
@@ -192,28 +198,14 @@ const CreatePage = (props) => {
               </select>
             </label>
           </div>
-
           <div className="newInput">
           How much medication do you have?
             <label className="newInputLabel">
-              <input className="newInputBox" value="default">Please insert number</input>
+              <input className="newInputBox" placeholder="Please insert number"></input>
             </label>
           </div>
-
-          <div className="newInput">
-          Would you like to add event to your calendar?
-            <label class="switch">
-              <input type="checkbox" id="toggled">
-              <span class="slider">
-              </span>
-              </input>
-            </label>
-          </div>
-
           <button className="createNewMedication" type="submit" value="submit" >Submit</button>
-
-        </form> 
-      </div>
+      </form>
     </div>
   )
 }

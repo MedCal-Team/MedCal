@@ -8,6 +8,9 @@ import './stylesheets/styles.scss';
 
 const theme = createTheme({
   palette: {
+    background: {
+      default: '#c37d93'
+    },
     primary: {
       main: '#7DC3AD',
     },

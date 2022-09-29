@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Box, Modal, Typography, TextField } from '@mui/material';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import actions from '../actions/actions';
 
 const style = {
   position: 'absolute',
@@ -15,23 +18,33 @@ const style = {
 };
 
 const SignUpModal = ({ open, onClose }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [user, setUsername] = useState('');
+  const [pass, setPassword] = useState('');
   const handleAddUser = async (e) => {
     // prevent default 
     e.preventDefault();
     console.log('invoked?')
     const submitData = {
-      username: username,
-      password: password
+      username: user,
+      password: pass
     };
     try {
       // are we sure it should be /homepage and not /create?
-      const response = await fetch('/homepage', {
+      const response = await fetch('/api/signup', {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(submitData)
       })
+      console.log('are we signed up? :', response);
+      if(response.status === 200){
+        console.log('entered if statement')
+      }
+      dispatch(actions.signUp(user));
+      navigate('/home');
     } catch {
       // figure out error handling here
       console.log('error with signing up')
@@ -52,15 +65,15 @@ const SignUpModal = ({ open, onClose }) => {
                 id='username'
                 label='username'
                 variant='standard'
-                defaultValue='medcal'
-                // onChange={(e) => (e.target.value)}
-                readonly
+                value={user}
+                onChange={(e) => setUsername(e.target.value)}
                 />
                 <TextField
                 id='password'
                 label='password'
                 variant='standard'
-                defaultValue='I love react/redux' 
+                value={pass} 
+                onChange={(e) => setPassword(e.target.value)}
                 />
             </Typography>
             <Button variant='contained' sx={{ my: 4, mx: 13 }} onClick={handleAddUser}>Sign Up</Button>

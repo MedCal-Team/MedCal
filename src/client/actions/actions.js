@@ -2,18 +2,18 @@ import * as types from '../constants/actionTypes';
 
 const actions = {};
 
-actions.logIn = (username, calendarEmbedSrc, medList) => ({
+actions.logIn = (username, medList) => ({
   type: types.LOG_IN,
-  payload: {username, calendarEmbedSrc, medList}
+  payload: {username, medList}
 });
 
 actions.logOut = () => ({
   type: types.LOG_OUT
 });
 
-actions.signUp = (username, calendarEmbedSrc) => ({
+actions.signUp = (username) => ({
   type: types.SIGN_UP,
-  payload: {username, calendarEmbedSrc}
+  payload: {username}
 });
 
 const createMed = (
@@ -88,7 +88,8 @@ actions.createMedThunk = (
       taketime: administrationTime,
       startdate: start,
       quantity: doses,
-      title: medName, 
+      title: title, 
+      prescription: medName
       // add: updateCalendar
     }),
     headers: {'Content-Type': 'application/json'},
@@ -123,7 +124,8 @@ actions.updateMedThunk = (
       taketime: administrationTime,
       startdate: start,
       quantity: doses,
-      title: medName, 
+      title: title,
+      prescription: medName 
       // add: updateCalendar
     }),
     headers: {'Content-Type': 'application/json'},
@@ -139,20 +141,19 @@ actions.updateMedThunk = (
 };
 
 actions.deleteMedThunk = (
-  medName,
-  username
+  title
 ) => dispatch => {
   fetch('/api/homepage', {
     method: 'DELETE',
     body: JSON.stringify({
       // username: username,
-      title: medName,
+      title: title,
     }),
     headers: {'Content-Type': 'application/json'},
   })
   .then(res => {
     if(res.status === 200) {
-      dispatch(deleteMed(medName));
+      dispatch(deleteMed(title));
     } else {
       console.log('inside of deleteMedThunk - Server returned status of', res.status)
     }
